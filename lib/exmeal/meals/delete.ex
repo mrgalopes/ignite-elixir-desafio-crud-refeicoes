@@ -1,10 +1,10 @@
-defmodule Exmeal.Meals.Get do
+defmodule Exmeal.Meals.Delete do
   alias Exmeal.{Error, Meal, Repo}
 
-  def by_id(id) do
+  def call(id) do
     case Repo.get(Meal, id) do
       nil -> {:error, Error.meal_not_found_error()}
-      meal -> {:ok, meal}
+      meal -> Repo.delete(meal)
     end
   end
 end
