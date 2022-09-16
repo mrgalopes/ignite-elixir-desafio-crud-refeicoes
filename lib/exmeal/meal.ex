@@ -3,6 +3,8 @@ defmodule Exmeal.Meal do
 
   import Ecto.Changeset
 
+  @primary_key {:id, :binary_id, autogenerate: true}
+
   @required_fields [:description, :date, :calories]
 
   schema "meals" do
@@ -14,5 +16,6 @@ defmodule Exmeal.Meal do
   def changeset(params) do
     %__MODULE__{}
     |> cast(params, @required_fields)
+    |> validate_required(@required_fields)
   end
 end
